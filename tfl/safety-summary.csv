@@ -1,0 +1,11 @@
+ARM,TERM,DENOMINATOR,PARTICIPANTS_N,PARTICIPANTS_PCT,EVENT_RECORDS_N
+Placebo,Any recorded event,12,2,16.7,2
+Placebo,Headache,12,1,8.3,1
+Placebo,Injection site discomfort,12,0,0,0
+Placebo,Nausea,12,0,0,0
+Placebo,Rash,12,1,8.3,1
+Investigational A,Any recorded event,12,4,33.3,5
+Investigational A,Headache,12,1,8.3,2
+Investigational A,Injection site discomfort,12,2,16.7,2
+Investigational A,Nausea,12,1,8.3,1
+Investigational A,Rash,12,0,0,0

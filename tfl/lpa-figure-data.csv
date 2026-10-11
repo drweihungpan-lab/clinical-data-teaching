@@ -1,0 +1,9 @@
+ARM,DAY,VISIT,N_OBSERVED,MEAN_LPA
+Placebo,1,BASELINE,12,224.3
+Placebo,15,DAY 15,12,229.2
+Placebo,30,DAY 30,12,222.4
+Placebo,90,DAY 90,12,226.9
+Investigational A,1,BASELINE,12,220.7
+Investigational A,15,DAY 15,12,143.4
+Investigational A,30,DAY 30,11,86.5
+Investigational A,90,DAY 90,12,121.4

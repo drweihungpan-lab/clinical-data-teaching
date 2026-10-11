@@ -1,0 +1,9 @@
+USUBJID,ARM,VISIT,LPA_NMOL_L,STATUS
+EDU-LPA-003,Investigational A,BASELINE,201,Observed
+EDU-LPA-003,Investigational A,DAY 15,132.7,Observed
+EDU-LPA-003,Investigational A,DAY 30,82.4,Observed
+EDU-LPA-003,Investigational A,DAY 90,112.6,Observed
+EDU-LPA-007,Investigational A,BASELINE,269,Observed
+EDU-LPA-007,Investigational A,DAY 15,174.8,Observed
+EDU-LPA-007,Investigational A,DAY 30,,Not done: specimen not available
+EDU-LPA-007,Investigational A,DAY 90,148,Observed
