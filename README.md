@@ -19,6 +19,8 @@ SLN360 is a real published example. The CSVs, their outputs, and the diagnostic 
 
 The Markdown lessons separate slide text from instructor notes. Present the short slide bullets; use the notes to explain them in your own words. Mermaid diagrams render on GitHub; CSVs open in a spreadsheet. The generated figure is also available as a standalone SVG.
 
+Editable PowerPoint decks with presenter notes: [slides/README.md](slides/README.md).
+
 Maintainer commands (students do not need these):
 
 ```sh
