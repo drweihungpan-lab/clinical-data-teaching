@@ -16,11 +16,16 @@ This directory contains publicly available regulatory documents from the SLN360 
 - **Enrolled Participants**: 180
 - **Study Type**: Phase 2
 
-## Source
+## Source Documents
 
-These documents are publicly available on [ClinicalTrials.gov](https://clinicaltrials.gov/study/NCT05537571):
+Regulatory documents are publicly available on [ClinicalTrials.gov](https://clinicaltrials.gov/study/NCT05537571):
 - [Protocol](https://cdn.clinicaltrials.gov/large-docs/71/NCT05537571/Prot_000.pdf)
 - [Statistical Analysis Plan](https://cdn.clinicaltrials.gov/large-docs/71/NCT05537571/SAP_001.pdf)
+
+## Publication
+
+- **Nissen, S.E., et al.** "Zerlasiran—A Small-Interfering RNA Targeting Lipoprotein(a): A Phase 2 Randomized Clinical Trial." *JAMA*. 2024;332(23):1992–2002. DOI: 10.1001/jama.2024.21957
+  - [PubMed Link](https://pubmed.ncbi.nlm.nih.gov/39556769/)
 
 ## Use in Teaching
 
