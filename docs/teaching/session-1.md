@@ -190,19 +190,43 @@ Publishing before filing a patent can damage patentability. Europe generally req
 
 This is preclinical development. For a typical small molecule, repeated-dose toxicity studies in two species, one of them a non-rodent, generally support early clinical trials ([ICH M3(R2)](https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf)); biologics follow a different, product-specific approach. Explain CMC as chemistry, manufacturing, and controls in one sentence: evidence that each batch is what it claims to be. The first human dose is chosen from animal safety and exposure data with a margin of caution. A small biotech rarely owns animal facilities or manufacturing plants, which is why CROs and CDMOs exist. [FDA preclinical research](https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research)
 
-## Slide 13 — Permission to start
+## Slide 13 — The regulator's role at each stage (FDA as example)
 
 **Slide text**
 
-- US: submit an Investigational New Drug application (IND) to FDA; the trial may begin 30 days after FDA receives it unless FDA places a clinical hold.
-- EU: submit one clinical-trial application through CTIS; the member states concerned, including ethics review, assess it.
-- Before dosing: ethics/IRB approval, selected sites, contracts, trial registration.
+| Stage | What FDA does | Type of control |
+| --- | --- | --- |
+| Entering humans (IND) | Reviews preclinical, manufacturing, and the first protocol within 30 days | **Entry gate**: silence after 30 days means go |
+| During every trial | Receives expedited safety reports (7 or 15 days) and annual reports | **Ongoing watch**: can place a clinical hold at any time |
+| Phase 1 → 2 → 3 | Receives each new protocol; it may start once submitted and IRB-approved | **Veto, not approval**: stops only for safety or a clearly deficient design |
+| End-of-phase 2 meeting | Advises on phase 3 design, endpoints, number of trials | **Advice**: not binding, but ignoring it is risky |
+| Submission (NDA/BLA) | Full review: re-analyzes data, inspects sites and factories | **Approval gate**: approval or a Complete Response Letter |
+
+- The regulator protects participants throughout; it does not guarantee the program will succeed.
 
 **Instructor notes**
 
-Regulatory affairs (RA) coordinates these submissions. A pre-IND meeting lets a sponsor ask FDA questions before filing ([21 CFR 312.40](https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40), [FDA IND overview](https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application)). In the EU, trial authorization falls under the [Clinical Trials Regulation](https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng) and is a member-state decision, not an EMA approval. Stress the distinction: permission to *start a trial* is not approval to *market a medicine*. Marketing approval comes only after the phases in Slide 6. Do not teach submission procedures.
+Many students assume the regulator approves each phase. In the US the default is "go unless FDA says stop": a new protocol under an existing IND may begin once submitted to FDA and approved by an IRB ([21 CFR 312.30](https://www.ecfr.gov/current/title-21/section-312.30)). FDA can place a clinical hold for safety and, for phase 2/3, when the protocol is clearly deficient in design to meet its stated objectives ([21 CFR 312.42](https://www.ecfr.gov/current/title-21/section-312.42)). The IND enters effect 30 days after receipt unless FDA places a hold ([21 CFR 312.40](https://www.ecfr.gov/current/title-21/section-312.40)). Expedited safety reports follow [21 CFR 312.32](https://www.ecfr.gov/current/title-21/section-312.32). Day-to-day monitoring is the sponsor's job; FDA inspects selected sites, mostly around submission.
 
-## Slide 14 — Who carries it further?
+Link to the success-rate slide: why are about 9% of submissions never approved, even after a "successful" trial? Meeting the SAP shows the trial hit its own prespecified target; FDA judges the whole benefit–risk case. FDA re-analyzes the submitted data (robustness to missing data, single-site effects, multiplicity), may not accept the endpoint, population, or dose, may need more than one adequate trial, needs an adequate safety database, and inspects sites and factories. If not approvable, FDA sends a Complete Response Letter listing what must be fixed. One line for students: "The SAP is the exam the sponsor wrote for itself; the regulator grades the whole case." Regulatory affairs (RA) coordinates these interactions. Do not teach submission procedures.
+
+## Slide 14 — US and EU: who decides what?
+
+**Slide text**
+
+| Question | United States | European Union |
+| --- | --- | --- |
+| Who authorizes a clinical trial? | FDA, through the IND | Each member state concerned (competent authority and ethics committee), via one application in CTIS, not EMA |
+| Does each new trial need authorization? | No: new protocols run under the existing IND unless FDA objects | Yes: every trial needs its own explicit authorization |
+| Scientific advice during development | FDA meetings (pre-IND, end-of-phase 2) | EMA scientific advice, or national agencies; not binding |
+| Who approves the medicine? | FDA approves the NDA/BLA | Centralized route: EMA's CHMP gives an opinion; the European Commission grants the authorization |
+| If not approvable | Complete Response Letter | Negative CHMP opinion, or the sponsor withdraws |
+
+**Instructor notes**
+
+The EU is closer to the "gate at every trial" picture many students expect: under the [Clinical Trials Regulation](https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng), each trial is authorized before it starts. The application has a scientific part assessed jointly by the member states concerned, led by a reporting member state, and a national part (such as informed consent, site suitability, and recruitment) assessed by each member state, including ethics review. EMA does not authorize clinical trials. For marketing, EMA's committee assesses the evidence and the European Commission decides ([EMA authorization overview](https://www.ema.europa.eu/en/about-us/what-we-do/authorisation-medicines)); national and decentralized routes also exist. Stress the distinction: permission to *start a trial* is not approval to *market a medicine*. Keep this to a comparison; do not teach procedures or timelines.
+
+## Slide 15 — Who carries it further?
 
 **Slide text**
 
@@ -217,7 +241,7 @@ Regulatory affairs (RA) coordinates these submissions. A pre-IND meeting lets a 
 
 A pharma partner brings money, development experience, and scale for later phases. Link back to Slide 10: each phase result is also a business decision point. This is an orientation model, not a definition based on company size or tool stack. Biopharmaceutical describes a scientific/product area rather than a mutually exclusive corporate type. A sponsor can transfer activities to service providers while retaining appropriate oversight. [ICH roles and oversight](https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf)
 
-## Slide 15 — Sites turn plans into observations
+## Slide 16 — Sites turn plans into observations
 
 **Slide text**
 
@@ -234,9 +258,9 @@ Keep this high-level. Follow one blood sample: scheduled visit → collection �
 
 GCP connects ethical study conduct, participant protection, reliable results, and clear sponsor/site responsibilities. It matters to how data are collected, checked, and reported, not only to an inspection. [FDA E6(R3) overview](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e6r3-good-clinical-practice-gcp)
 
-FDA evaluates the submitted US drug-development evidence and makes approval decisions. For the EU centralized medicine route, EMA performs scientific assessment and recommends a decision; the European Commission grants authorization. EU clinical-trial authorization is a national-authority responsibility, not an EMA approval. RA helps teams navigate these interfaces. Keep this to one minute; Slide 13 already covered permission to start. [FDA review](https://www.fda.gov/drugs/information-consumers-and-patients-drugs/fdas-drug-review-process-ensuring-drugs-are-safe-and-effective), [EMA authorization overview](https://www.ema.europa.eu/en/about-us/what-we-do/authorisation-medicines)
+Slides 13–14 already covered the regulator's role and the US/EU differences; skip this unless students ask. [FDA review](https://www.fda.gov/drugs/information-consumers-and-patients-drugs/fdas-drug-review-process-ensuring-drugs-are-safe-and-effective), [EMA authorization overview](https://www.ema.europa.eu/en/about-us/what-we-do/authorisation-medicines)
 
-## Slide 16 — SLN360: read the study, not only the headline
+## Slide 17 — SLN360: read the study, not only the headline
 
 **Slide text**
 
@@ -248,7 +272,7 @@ FDA evaluates the submitted US drug-development evidence and makes approval deci
 
 Open the study and guide students through the card. Ask them to locate the primary outcome, treatment groups, and measurements. Briefly point to Table 1, Table 2, and Figure 2: participants, adverse events, and biomarker trajectories. Make the number of groups visible so nobody carries over the invented two-arm demonstration into the real study. No detailed cohort modeling or journal-figure redistribution is needed.
 
-## Slide 17 — What would the next team need?
+## Slide 18 — What would the next team need?
 
 **Slide text**
 
@@ -268,4 +292,4 @@ Offer the three [session-1 presentation topics](presentations.md#after-session-1
 
 ## References for this session
 
-Use [BIO/Informa/QLS success rates 2011–2020](https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf), [Sun et al., 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9293739/), [Williams et al., 2015](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127242), [FDA preclinical research](https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research), [ICH M3(R2)](https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf), [21 CFR 312.40](https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40), the [EU Clinical Trials Regulation](https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng), [FDA phase definitions](https://www.fda.gov/drugs/investigational-new-drug-application-ind/drug-development-and-review-definitions), [FDA clinical-research overview](https://www.fda.gov/patients/drug-development-process/step-3-clinical-research), [ICH E6(R3) overview](https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf), and the [SLN360 case reference](case-study.md). Sources checked for the 2026-10-11 implementation; opening and industry-journey sources checked 2026-11-25. The study findings are historical.
+Use [BIO/Informa/QLS success rates 2011–2020](https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf), [Sun et al., 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9293739/), [Williams et al., 2015](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127242), [FDA preclinical research](https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research), [ICH M3(R2)](https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf), [21 CFR 312.40](https://www.ecfr.gov/current/title-21/section-312.40), the [EU Clinical Trials Regulation](https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng), [FDA phase definitions](https://www.fda.gov/drugs/investigational-new-drug-application-ind/drug-development-and-review-definitions), [FDA clinical-research overview](https://www.fda.gov/patients/drug-development-process/step-3-clinical-research), [ICH E6(R3) overview](https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf), and the [SLN360 case reference](case-study.md). Sources checked for the 2026-10-11 implementation; opening and industry-journey sources checked 2026-11-25. The study findings are historical.

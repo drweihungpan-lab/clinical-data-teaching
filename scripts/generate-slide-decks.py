@@ -45,7 +45,7 @@ SOURCES = {
     "replication": "https://www.nature.com/articles/483531a",
     "fda_preclinical": "https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research",
     "ich_m3": "https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf",
-    "ind": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40",
+    "ind": "https://www.ecfr.gov/current/title-21/section-312.40",
     "eu_ctr": "https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng",
     "bio_loa": "https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf",
     "fda_research": "https://www.fda.gov/patients/drug-development-process/step-3-clinical-research",
@@ -323,7 +323,7 @@ def synthetic_figure():
 
 def session1():
     prs = make_prs()
-    T = 21
+    T = 22
     section_cover(prs, "Data processing in\nclinical trials", "From a mouse-study discovery to evidence and a development decision",
                   1, "2 HOURS", "Understand the trial before analyzing its data.",
                   "Opening: an invented discovery. Real anchor: the published SLN360 phase 1 study. Synthetic records are a separate teaching example.")
@@ -451,20 +451,37 @@ def session1():
        "CMC means chemistry, manufacturing, and controls: evidence that each batch is what it claims to be. The first human dose is chosen from animal safety and exposure data with a margin of caution. "
        "A small biotech rarely owns animal facilities or manufacturing plants, which is why CROs and CDMOs exist.",
        "fda_preclinical,ich_m3", cols=3)
-    cards_slide(prs, "Permission to start", [
-        ("United States", "IND to FDA. The trial may begin 30 days after FDA receives it, unless FDA places a clinical hold.", "FDA"),
-        ("European Union", "One clinical-trial application through CTIS; the member states concerned, including ethics review, assess it.", "EU CTR"),
-        ("Before dosing", "Ethics/IRB approval, selected sites, contracts, and trial registration.", "Sites"),
-    ], "Industry journey · Dr. Lin", 15, T,
-       "Regulatory affairs coordinates these submissions; a pre-IND meeting lets a sponsor ask FDA questions before filing. EU trial authorization is a member-state decision, not an EMA approval. "
-       "Stress the distinction: permission to start a trial is not approval to market a medicine. Marketing approval comes only after the phases. Do not teach submission procedures.",
-       "ind,eu_ctr", cols=3)
+    table_slide(prs, "The regulator's role at each stage · FDA example", ["Stage", "What FDA does", "Type of control"], [
+        ["Entering humans (IND)", "Reviews preclinical, manufacturing, first protocol within 30 days", "Entry gate: silence after 30 days means go"],
+        ["During every trial", "Receives expedited safety reports (7 or 15 days) and annual reports", "Ongoing watch: can place a clinical hold any time"],
+        ["Phase 1 \u2192 2 \u2192 3", "Receives each new protocol; it may start once submitted and IRB-approved", "Veto, not approval: stops only for safety or clearly deficient design"],
+        ["End-of-phase 2 meeting", "Advises on phase 3 design, endpoints, number of trials", "Advice: not binding, but ignoring it is risky"],
+        ["Submission (NDA/BLA)", "Full review: re-analyzes data, inspects sites and factories", "Approval gate: approval or Complete Response Letter"],
+    ], "Industry journey \u00b7 Dr. Lin", 15, T,
+       "Many students assume the regulator approves each phase. In the US the default is go unless FDA says stop: a new protocol under an existing IND may begin once submitted to FDA and IRB-approved (21 CFR 312.30). "
+       "Clinical hold: for safety, and for phase 2/3 when the protocol is clearly deficient in design (21 CFR 312.42). IND in effect 30 days after receipt unless held (312.40). Safety reports: 7 days fatal/life-threatening unexpected, 15 days other serious risks (312.32). "
+       "Day-to-day monitoring is the sponsor's job; FDA inspects selected sites, mostly around submission. "
+       "Why can a trial that met its SAP still get a Complete Response Letter? The SAP is the exam the sponsor wrote for itself; the regulator grades the whole case: robustness of the re-analysis, clinical meaningfulness, acceptable endpoint/population/dose, more than one adequate trial, safety database size, site and factory inspections. "
+       "The regulator protects participants throughout; it does not guarantee the program will succeed.",
+       "ind", widths=[2.4, 4.9, 4.5])
+    table_slide(prs, "US and EU: who decides what?", ["Question", "United States", "European Union"], [
+        ["Who authorizes a trial?", "FDA, through the IND", "Each member state concerned (authority + ethics committee) via CTIS; not EMA"],
+        ["Each new trial authorized?", "No: runs under the IND unless FDA objects", "Yes: every trial needs explicit authorization"],
+        ["Scientific advice", "FDA meetings (pre-IND, end-of-phase 2)", "EMA or national agencies; not binding"],
+        ["Who approves the medicine?", "FDA approves the NDA/BLA", "EMA's CHMP gives an opinion; the European Commission decides"],
+        ["If not approvable", "Complete Response Letter", "Negative CHMP opinion, or sponsor withdraws"],
+    ], "Industry journey \u00b7 Dr. Lin", 16, T,
+       "The EU is closer to the gate-at-every-trial picture students expect: under the Clinical Trials Regulation each trial is authorized before it starts. "
+       "Part I (scientific) is assessed jointly by the member states concerned, led by a reporting member state; Part II (national: consent, site suitability, recruitment) by each member state, including ethics review. "
+       "EMA does not authorize clinical trials. For marketing via the centralized route, EMA's committee assesses and the European Commission decides; national and decentralized routes also exist. "
+       "Permission to start a trial is not approval to market a medicine. Compare; do not teach procedures or timelines.",
+       "eu_ctr,ema", widths=[2.9, 4.0, 4.9])
     table_slide(prs, "Who carries it further?", ["Organization", "Where it appeared in Dr. Lin's journey", "Connection to data"], [
         ["Biotech", "Turned a paper into a program", "Concentrated assets, partnerships, trade-offs"],
         ["CRO", "Ran safety studies; later runs trials", "Operations, data management, programming"],
         ["CMO / CDMO", "Made the clinical batch", "Batch quality, consistency, CMC evidence"],
         ["Pharma", "Partners, licenses, or acquires, often after early human data", "Larger trials, portfolio, post-market data"],
-    ], "Industry journey · Dr. Lin", 16, T,
+    ], "Industry journey · Dr. Lin", 17, T,
        "A pharma partner brings money, development experience, and scale for later phases. Link back to the decisions slide: each phase result is also a business decision point. "
        "Company types overlap; this is an orientation model, not a rule based on size or software. Delegation does not erase sponsor oversight.",
        "ich_e6", widths=[2.2, 5.0, 4.6])
@@ -472,18 +489,18 @@ def session1():
         ("Protocol", "Visit and procedure"), ("Site", "Collect specimen"),
         ("Laboratory", "Measure and report"), ("Data team", "Review and resolve"),
         ("Analysis", "Use for a planned question"),
-    ], "Industry journey · first patient", 17, T, "Once the trial starts, sites turn plans into observations. A missing result could mean a missed visit, lost specimen, processing problem, or transfer issue. The source and reason matter; the statistician should not invent a value.", "fda_gcp")
+    ], "Industry journey · first patient", 18, T, "Once the trial starts, sites turn plans into observations. A missing result could mean a missed visit, lost specimen, processing problem, or transfer issue. The source and reason matter; the statistician should not invent a value.", "fda_gcp")
     cards_slide(prs, "SLN360: read the study, not just the headline", [
         ("32", "Participants with elevated Lp(a), no known clinical cardiovascular disease.", "Population"),
         ("5 groups", "Placebo plus four single ascending active-dose cohorts.", "Actual design"),
         ("Primary", "Safety and tolerability; Lp(a) change was a secondary outcome.", "Question"),
         ("150 days", "Maximum follow-up for the biomarker measurement.", "Window"),
-    ], "Published case · SLN360", 18, T,
+    ], "Published case · SLN360", 19, T,
        "This is the 2022 published phase 1 APOLLO study. Do not describe it as a generic two-arm confirmatory trial. Open the paper's participant table, adverse-event table, and Lp(a) figure. Never imply the invented EDU-LPA data are actual trial records.", "sln", cols=2)
     slide = table_slide(prs, "What changed in the published Lp(a) result?", ["Group", "Max median change from baseline"], [
         ["Placebo", "−10%"], ["SLN360 30 mg", "−46%"], ["SLN360 100 mg", "−86%"],
         ["SLN360 300 mg", "−96%"], ["SLN360 600 mg", "−98%"],
-    ], "Published case · SLN360", 19, T,
+    ], "Published case · SLN360", 20, T,
        "Reported maximum median percentage change over follow-up in a 32-person phase 1 study. This dose-related biomarker result supports further study; it does not establish fewer cardiovascular events, approval, comprehensive safety, or clinical benefit. These are not treatment-effect estimates with uncertainty intervals.", "sln", widths=[4.3, 7.5])
     bullets_slide(prs, "Read the evidence at the right level", [
         "A published mouse study is a starting point, not permission to treat people.",
@@ -491,12 +508,12 @@ def session1():
         "A small phase 1 study cannot characterize rare or delayed harms reliably.",
         "Published results are real; the teaching database is invented.",
         "A development decision uses evidence plus safety, feasibility, funding, and judgment.",
-    ], "Session 1 · recap", 20, T, "Three oral checks: biomarker vs events; CRO vs sponsor oversight; Dr. Lin's paper vs first human trial (name one science gap and one business gap). Then invite students to pick one of the three presentation topics.", "sln")
+    ], "Session 1 · recap", 21, T, "Three oral checks: biomarker vs events; CRO vs sponsor oversight; Dr. Lin's paper vs first human trial (name one science gap and one business gap). Then invite students to pick one of the three presentation topics.", "sln")
     cards_slide(prs, "Three open topics for next session", [
         ("01 · PHASES", "Why does an early result lead to another question rather than settle development?", "Volunteer"),
         ("02 · SLN360", "What do the study question and biomarker result show—and leave open?", "Volunteer"),
         ("03 · SPONSOR + CRO", "How can activities be shared while oversight remains?", "Volunteer"),
-    ], "Session 1 · student topics", 21, T, "Choose one volunteer per topic before leaving. Each presentation is 5–10 minutes at the next session. Suggested primary sources appear in presenter notes.", cols=3)
+    ], "Session 1 · student topics", 22, T, "Choose one volunteer per topic before leaving. Each presentation is 5–10 minutes at the next session. Suggested primary sources appear in presenter notes.", cols=3)
     prs.save(OUT / "session-1-clinical-trials.pptx")
 
 def session2(figure):
