@@ -42,6 +42,12 @@ SOURCES = {
     "dataact": "https://eur-lex.europa.eu/eli/reg/2023/2854/oj/eng",
     "ema_device": "https://www.ema.europa.eu/en/human-regulatory-overview/medical-devices",
     "mdcg": "https://health.ec.europa.eu/system/files/2022-01/mdcg_2022-2_en.pdf",
+    "replication": "https://www.nature.com/articles/483531a",
+    "fda_preclinical": "https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research",
+    "ich_m3": "https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf",
+    "ind": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40",
+    "eu_ctr": "https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng",
+    "ich_e6": "https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf",
 }
 SOURCE_LABELS = {
     "fda_phases": "FDA · drug development", "fda_gcp": "FDA · Good Clinical Practice",
@@ -52,6 +58,10 @@ SOURCE_LABELS = {
     "gdpr": "EU General Data Protection Regulation", "iso": "ISO/IEC 27001",
     "dataact": "EU Data Act", "ema_device": "EMA · medical devices",
     "mdcg": "European Commission · MDCG guidance",
+    "replication": "Begley & Ellis · Nature 2012",
+    "fda_preclinical": "FDA · preclinical research", "ich_m3": "ICH M3(R2)",
+    "ind": "21 CFR 312.40", "eu_ctr": "EU Clinical Trials Regulation 536/2014",
+    "ich_e6": "ICH E6(R3)",
 }
 
 def rgb(hex_value):
@@ -156,7 +166,7 @@ def agenda_slide(prs, title, items, section, number, total, notes=""):
         shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, x, top, block - 0.12, 3.65, WHITE)
         shape(slide, MSO_SHAPE.RECTANGLE, x, top, block - 0.12, 0.09, TEAL if i != 1 else CORAL)
         textbox(slide, time, x + 0.18, top + 0.30, block - 0.42, 0.35, 13, TEAL, True)
-        textbox(slide, label, x + 0.18, top + 0.85, block - 0.42, 0.72, 17, NAVY, True)
+        textbox(slide, label, x + 0.18, top + 0.85, block - 0.42, 0.72, 17 if len(items) <= 6 else 14, NAVY, True)
         textbox(slide, desc, x + 0.18, top + 1.78, block - 0.42, 1.5, 12, MUTED)
     add_notes(slide, notes or "Use this as a map, not a promise to spend equal time on every item.")
     return slide
@@ -178,7 +188,40 @@ def cards_slide(prs, title, cards, section, number, total, notes="", source="", 
     add_notes(slide, notes, [SOURCES[k] for k in source.split(",") if k in SOURCES])
     return slide
 
-def flow_slide(prs, title, stages, section, number, total, notes="", source=""):
+def scenario_slide(prs, title, story, questions, section, number, total, notes="", source=""):
+    slide = new_slide(prs, title, section, number, total, source_caption(source))
+    shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, 0.82, 1.85, 11.65, 2.35, WHITE)
+    shape(slide, MSO_SHAPE.RECTANGLE, 0.82, 1.97, 0.08, 2.11, GOLD)
+    textbox(slide, "AN INVENTED SCENARIO", 1.15, 2.05, 6.0, 0.25, 9, GOLD, True)
+    textbox(slide, story, 1.15, 2.42, 11.0, 1.65, 22, NAVY)
+    textbox(slide, "ASK THE ROOM", 0.85, 4.55, 6.0, 0.25, 9, CORAL, True)
+    bullet_list(slide, questions, y=4.90, size=22, gap=0.72, color=NAVY, accent=CORAL)
+    add_notes(slide, notes, [SOURCES[k] for k in source.split(",") if k in SOURCES])
+    return slide
+
+def two_column_slide(prs, title, columns, section, number, total, notes="", source="", footer=""):
+    slide = new_slide(prs, title, section, number, total, source_caption(source))
+    x0, top, gap = 0.72, 1.78, 0.30
+    col_w = (11.9 - gap) / 2
+    for i, (heading, question, items) in enumerate(columns):
+        x = x0 + i * (col_w + gap)
+        accent = TEAL if i == 0 else CORAL
+        shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, x, top, col_w, 4.55, WHITE)
+        shape(slide, MSO_SHAPE.RECTANGLE, x, top, col_w, 0.09, accent)
+        textbox(slide, heading.upper(), x + 0.28, top + 0.26, col_w - 0.56, 0.28, 11, accent, True)
+        textbox(slide, question, x + 0.28, top + 0.58, col_w - 0.56, 0.42, 19, NAVY, True)
+        for j, (label, detail) in enumerate(items):
+            yy = top + 1.22 + j * 0.80
+            shape(slide, MSO_SHAPE.OVAL, x + 0.30, yy + 0.08, 0.15, 0.15, accent)
+            textbox(slide, label, x + 0.58, yy, col_w - 0.86, 0.30, 15, NAVY, True)
+            textbox(slide, detail, x + 0.58, yy + 0.31, col_w - 0.86, 0.42, 12, MUTED)
+    if footer:
+        textbox(slide, footer, 0.9, 6.45, 11.5, 0.35, 14, TEAL, True, align=PP_ALIGN.CENTER)
+    add_notes(slide, notes, [SOURCES[k] for k in source.split(",") if k in SOURCES])
+    return slide
+
+def flow_slide(prs, title, stages, section, number, total, notes="", source="",
+               tagline="A HANDOFF IS A CONVERSATION ABOUT PURPOSE, QUALITY, AND WHAT THE NEXT TEAM NEEDS."):
     slide = new_slide(prs, title, section, number, total, source_caption(source))
     count = len(stages)
     x0, top, gap = 0.65, 2.55, 0.14
@@ -192,8 +235,7 @@ def flow_slide(prs, title, stages, section, number, total, notes="", source=""):
         textbox(slide, detail, x + 0.14, top + 1.14, box_w - 0.28, 0.50, 10, MUTED, align=PP_ALIGN.CENTER)
         if i < count - 1:
             textbox(slide, "›", x + box_w - 0.03, top + 0.72, gap + 0.08, 0.35, 20, CORAL, True, align=PP_ALIGN.CENTER)
-    textbox(slide, "A HANDOFF IS A CONVERSATION ABOUT PURPOSE, QUALITY, AND WHAT THE NEXT TEAM NEEDS.",
-            1.0, 5.15, 11.3, 0.55, 17, TEAL, True, align=PP_ALIGN.CENTER)
+    textbox(slide, tagline, 1.0, 5.15, 11.3, 0.55, 17, TEAL, True, align=PP_ALIGN.CENTER)
     add_notes(slide, notes, [SOURCES[k] for k in source.split(",") if k in SOURCES])
     return slide
 
@@ -271,81 +313,146 @@ def synthetic_figure():
 
 def session1():
     prs = make_prs()
-    section_cover(prs, "Clinical trials &\nthe industry", "From a clinical question to evidence and a development decision",
+    T = 18
+    section_cover(prs, "Clinical trials &\nthe industry", "From a mouse-study discovery to evidence and a development decision",
                   1, "2 HOURS", "Understand the trial before analyzing its data.",
-                  "Real anchor: the published SLN360 phase 1 study. Synthetic records are a separate teaching example.")
+                  "Opening: an invented discovery. Real anchor: the published SLN360 phase 1 study. Synthetic records are a separate teaching example.")
     agenda_slide(prs, "A map for the next two hours", [
-        ("00–30", "Trial foundations", "Question · protocol · endpoint · bias"),
+        ("00–13", "Opening", "A perfect discovery · two directions"),
+        ("13–30", "Trial basics", "Protocol · endpoint · bias"),
         ("30–50", "Phases", "Different evidence questions"),
         ("50–60", "Break", "Ten minutes"),
-        ("60–80", "Industry", "Sponsor · CRO · sites · CMO"),
+        ("60–80", "Industry journey", "Paper → company → first patient"),
         ("80–105", "SLN360", "Read the actual study design"),
         ("105–120", "Synthesis", "Checks and open topics"),
-    ], "Session 1", 2, 13, "All blocks, including the break, fit inside 120 minutes.")
+    ], "Session 1", 2, T, "All blocks, including the break, fit inside 120 minutes. Welcome takes the first three minutes: survey themes and your own route into clinical development.")
+    scenario_slide(prs, "A perfect discovery",
+        "Dr. Lin, a respected university researcher, finds that blocking protein X stops disease Y in mice. "
+        "The study is published in a top journal. Headlines: “Cure found.”",
+        ["Could we give this to patients next month?",
+         "What is missing between this paper and a clinical trial?"],
+        "Opening scenario", 3, T,
+        "This scenario is invented; it is not SLN360 or any real program. Read it aloud, then give pairs about three minutes "
+        "to list everything that must happen before the first patient is dosed. Collect answers without correcting them. "
+        "Push for the less obvious ones: Who pays? Who makes the drug? Will it work in another lab? Then reveal the next slide.")
+    two_column_slide(prs, "Two directions: what's missing?", [
+        ("Science", "Is it real, and is it safe?", [
+            ("Reproducibility", "Will another lab get the same result?"),
+            ("Biology", "Does the mouse model reflect the human disease?"),
+            ("Safety", "What does it do to the rest of the body? What first dose?"),
+            ("Evidence in people", "What to measure, and compared to what?"),
+        ]),
+        ("Business & operations", "Who pays, and can it get there?", [
+            ("Funding", "Grant → patent → biotech → investors → pharma"),
+            ("Market", "Unmet need, how many patients, competitors"),
+            ("Manufacturing", "Who makes a consistent clinical batch?"),
+            ("Permission to start", "Regulators, ethics review, sites"),
+        ]),
+    ], "Opening scenario", 4, T,
+        "Sort each student answer into a column. Make the columns meet: manufacturing and permission to start depend on the "
+        "science column's safety and quality data. Data questions sit under each science gap: small animal samples, effects that "
+        "may be inflated or may not replicate, a mouse outcome that is not a human endpoint. One industry team reported confirming "
+        "only 6 of 53 landmark preclinical cancer findings (Begley & Ellis 2012); present that as one team's experience, not a "
+        "universal rate. Close: the first half answers the science column; after the break we follow the business column.",
+        "replication", footer="FIRST HALF: THE SCIENCE COLUMN  ·  AFTER THE BREAK: THE BUSINESS COLUMN")
     cards_slide(prs, "A protocol is a shared plan", [
         ("WHO?", "Which people can answer the question?", "Population"),
         ("WHAT?", "Which intervention and comparison?", "Treatment"),
         ("WHEN?", "What is measured, and at which visits?", "Endpoints"),
         ("HOW?", "How will safety and evidence be assessed?", "Analysis"),
-    ], "Trial foundations", 3, 13, "A protocol links objectives, population, treatment, visits, and measurements. The statistical analysis plan makes analysis methods explicit. A model cannot recover an outcome the study never collected.", "fda_phases", cols=2)
+    ], "Trial foundations", 5, T, "A protocol links objectives, population, treatment, visits, and measurements. The statistical analysis plan makes analysis methods explicit. A model cannot recover an outcome the study never collected.", "fda_phases", cols=2)
     flow_slide(prs, "The endpoint connects medicine to statistics", [
         ("Clinical question", "What matters to patients?"),
         ("Biomarker", "Biological change"),
         ("Clinical outcome", "How patients feel, function, survive"),
         ("Decision", "What evidence is enough?"),
-    ], "Trial foundations", 4, 13,
-       "An Lp(a) change is a biomarker result; a cardiovascular event is a different kind of outcome. Ask: if the marker changes, what else would you want to know? Discuss duration, safety, and the marker-to-outcome relationship.")
+    ], "Trial foundations", 6, T,
+       "An Lp(a) change is a biomarker result; a cardiovascular event is a different kind of outcome. Ask: if the marker changes, what else would you want to know? Discuss duration, safety, and the marker-to-outcome relationship. Point back to Dr. Lin: a mouse result is not a human endpoint.")
     cards_slide(prs, "Three ideas that make comparisons credible", [
         ("Randomization", "Balances measured and unmeasured factors in expectation; small trials can still look imbalanced.", "Fair comparison"),
         ("Blinding", "Reduces effects of knowing an assignment. It is not always feasible for every person or intervention.", "Bias control"),
         ("Safety review", "Participant welfare can change dose escalation or study continuation.", "Oversight"),
-    ], "Trial foundations", 5, 13, "These methods support interpretable comparisons; none replaces clinical judgment or careful measurement.")
+    ], "Trial foundations", 7, T, "These methods support interpretable comparisons; none replaces clinical judgment or careful measurement.")
     table_slide(prs, "Phases ask different questions", ["Phase", "Main question", "Evidence emphasis"], [
         ["I", "Can early human exposure be studied safely?", "Close safety, dose and descriptive signals"],
         ["II", "Is there enough activity to choose what comes next?", "Dose, endpoints, uncertainty, feasibility"],
         ["III", "Is the benefit–risk case adequate for the proposed use?", "Planned comparisons; broader evidence"],
         ["IV", "What is learned in wider use?", "Longer-term safety/effectiveness"],
-    ], "Drug development", 6, 13,
+    ], "Drug development", 8, T,
        "These are common purposes, not rigid recipes. Sample sizes are not definitions. Phase I can include patients; never transfer the drug phase model mechanically to devices.", "fda_phases", widths=[1.0, 4.3, 6.4])
     cards_slide(prs, "Development is a sequence of decisions", [
         ("CONTINUE", "Evidence supports asking the next question.", "Next study"),
         ("CHANGE", "Revise dose, population, measure, or plan.", "Adapt the program"),
         ("STOP", "Evidence, safety, or feasibility no longer supports continuation.", "End the program"),
-    ], "Drug development", 7, 13, "A decision is not itself an effect estimate. A small early study may justify more research without establishing clinical benefit.", cols=3)
-    cards_slide(prs, "Who makes the evidence possible?", [
-        ("Pharma", "Broader portfolio; coordinates assets, evidence, and post-market data.", "Sponsor"),
-        ("Biotech", "Focused science and programs; partnerships can extend capability.", "Focused program"),
-        ("CRO", "Contracted study delivery, data, programming, and operational services.", "Study services"),
-        ("CMO / CDMO", "Manufacturing and process development connect product consistency to CMC evidence.", "Product supply"),
-    ], "Industry ecosystem", 8, 13, "Company types overlap. This is an orientation model, not a rule based on size or software. Delegation does not erase sponsor oversight.", cols=2)
+    ], "Drug development", 9, T, "A decision is not itself an effect estimate. A small early study may justify more research without establishing clinical benefit.", cols=3)
+    flow_slide(prs, "From paper to company", [
+        ("University lab", "Grants fund the discovery"),
+        ("Patent", "Tech-transfer office files"),
+        ("Spin-out biotech", "Licenses the patent"),
+        ("Investors", "Venture funding rounds"),
+        ("Market check", "Need · patients · competitors"),
+    ], "Industry journey · Dr. Lin", 10, T,
+       "Publishing before filing a patent can damage patentability: Europe generally requires absolute novelty, while the US offers a limited grace period for an inventor's own disclosure. A practical hook, not legal training. "
+       "Investors ask two things: is the science real (the left column) and could a product matter commercially. Keep the market check to two minutes: who needs it, how many people, what already exists. No pricing or reimbursement today. "
+       "A biotech often has one focused program and limited cash, so every study is also a funding milestone. This is one common route; programs can also stay academic longer, license directly to pharma, or be funded by foundations or governments.",
+       tagline="A BIOTECH TURNS A PAPER INTO A PROGRAM, AND EVERY STUDY BECOMES A FUNDING MILESTONE.")
+    cards_slide(prs, "Getting ready for the first human", [
+        ("Pick a candidate", "One specific molecule, not just “blocking protein X.”", "Drug"),
+        ("Pharmacology & PK", "Does it reach the target in animals, and how long does it stay?", "Animal data"),
+        ("GLP safety studies", "Toxicology, typically in two species for a small molecule; often run by a CRO.", "CRO"),
+        ("Clinical batch", "Quality-controlled supply and CMC evidence; often made by a CDMO.", "CDMO"),
+        ("Documents", "Investigator's brochure, first protocol, consent, starting-dose rationale.", "Paperwork"),
+    ], "Industry journey · Dr. Lin", 11, T,
+       "This is preclinical development. For a typical small molecule, repeated-dose toxicity studies in two species, one a non-rodent, generally support early trials (ICH M3(R2)); biologics follow a product-specific approach. "
+       "CMC means chemistry, manufacturing, and controls: evidence that each batch is what it claims to be. The first human dose is chosen from animal safety and exposure data with a margin of caution. "
+       "A small biotech rarely owns animal facilities or manufacturing plants, which is why CROs and CDMOs exist.",
+       "fda_preclinical,ich_m3", cols=3)
+    cards_slide(prs, "Permission to start", [
+        ("United States", "IND to FDA. The trial may begin 30 days after FDA receives it, unless FDA places a clinical hold.", "FDA"),
+        ("European Union", "One clinical-trial application through CTIS; the member states concerned, including ethics review, assess it.", "EU CTR"),
+        ("Before dosing", "Ethics/IRB approval, selected sites, contracts, and trial registration.", "Sites"),
+    ], "Industry journey · Dr. Lin", 12, T,
+       "Regulatory affairs coordinates these submissions; a pre-IND meeting lets a sponsor ask FDA questions before filing. EU trial authorization is a member-state decision, not an EMA approval. "
+       "Stress the distinction: permission to start a trial is not approval to market a medicine. Marketing approval comes only after the phases. Do not teach submission procedures.",
+       "ind,eu_ctr", cols=3)
+    table_slide(prs, "Who carries it further?", ["Organization", "Where it appeared in Dr. Lin's journey", "Connection to data"], [
+        ["Biotech", "Turned a paper into a program", "Concentrated assets, partnerships, trade-offs"],
+        ["CRO", "Ran safety studies; later runs trials", "Operations, data management, programming"],
+        ["CMO / CDMO", "Made the clinical batch", "Batch quality, consistency, CMC evidence"],
+        ["Pharma", "Partners, licenses, or acquires, often after early human data", "Larger trials, portfolio, post-market data"],
+    ], "Industry journey · Dr. Lin", 13, T,
+       "A pharma partner brings money, development experience, and scale for later phases. Link back to the decisions slide: each phase result is also a business decision point. "
+       "Company types overlap; this is an orientation model, not a rule based on size or software. Delegation does not erase sponsor oversight.",
+       "ich_e6", widths=[2.2, 5.0, 4.6])
     flow_slide(prs, "A measurement crosses several hands", [
         ("Protocol", "Visit and procedure"), ("Site", "Collect specimen"),
         ("Laboratory", "Measure and report"), ("Data team", "Review and resolve"),
         ("Analysis", "Use for a planned question"),
-    ], "Industry ecosystem", 9, 13, "A missing result could mean a missed visit, lost specimen, processing problem, or transfer issue. The source and reason matter; the statistician should not invent a value.", "fda_gcp")
+    ], "Industry journey · first patient", 14, T, "Once the trial starts, sites turn plans into observations. A missing result could mean a missed visit, lost specimen, processing problem, or transfer issue. The source and reason matter; the statistician should not invent a value.", "fda_gcp")
     cards_slide(prs, "SLN360: read the study, not just the headline", [
         ("32", "Participants with elevated Lp(a), no known clinical cardiovascular disease.", "Population"),
         ("5 groups", "Placebo plus four single ascending active-dose cohorts.", "Actual design"),
         ("Primary", "Safety and tolerability; Lp(a) change was a secondary outcome.", "Question"),
         ("150 days", "Maximum follow-up for the biomarker measurement.", "Window"),
-    ], "Published case · SLN360", 10, 13,
+    ], "Published case · SLN360", 15, T,
        "This is the 2022 published phase 1 APOLLO study. Do not describe it as a generic two-arm confirmatory trial. Open the paper's participant table, adverse-event table, and Lp(a) figure. Never imply the invented EDU-LPA data are actual trial records.", "sln", cols=2)
     slide = table_slide(prs, "What changed in the published Lp(a) result?", ["Group", "Max median change from baseline"], [
         ["Placebo", "−10%"], ["SLN360 30 mg", "−46%"], ["SLN360 100 mg", "−86%"],
         ["SLN360 300 mg", "−96%"], ["SLN360 600 mg", "−98%"],
-    ], "Published case · SLN360", 11, 13,
+    ], "Published case · SLN360", 16, T,
        "Reported maximum median percentage change over follow-up in a 32-person phase 1 study. This dose-related biomarker result supports further study; it does not establish fewer cardiovascular events, approval, comprehensive safety, or clinical benefit. These are not treatment-effect estimates with uncertainty intervals.", "sln", widths=[4.3, 7.5])
     bullets_slide(prs, "Read the evidence at the right level", [
+        "A published mouse study is a starting point, not permission to treat people.",
         "A biomarker response is not the same endpoint as a cardiovascular event.",
         "A small phase 1 study cannot characterize rare or delayed harms reliably.",
         "Published results are real; the teaching database is invented.",
-        "A development decision uses evidence plus safety, feasibility, and judgment.",
-    ], "Session 1 · recap", 12, 13, "Ask: What can this study tell us? What should we not claim? Then invite students to pick one of the three presentation topics.", "sln")
+        "A development decision uses evidence plus safety, feasibility, funding, and judgment.",
+    ], "Session 1 · recap", 17, T, "Three oral checks: biomarker vs events; CRO vs sponsor oversight; Dr. Lin's paper vs first human trial (name one science gap and one business gap). Then invite students to pick one of the three presentation topics.", "sln")
     cards_slide(prs, "Three open topics for next session", [
         ("01 · PHASES", "Why does an early result lead to another question rather than settle development?", "Volunteer"),
         ("02 · SLN360", "What do the study question and biomarker result show—and leave open?", "Volunteer"),
         ("03 · SPONSOR + CRO", "How can activities be shared while oversight remains?", "Volunteer"),
-    ], "Session 1 · student topics", 13, 13, "Choose one volunteer per topic before leaving. Each presentation is 5–10 minutes at the next session. Suggested primary sources appear in presenter notes.", cols=3)
+    ], "Session 1 · student topics", 18, T, "Choose one volunteer per topic before leaving. Each presentation is 5–10 minutes at the next session. Suggested primary sources appear in presenter notes.", cols=3)
     prs.save(OUT / "session-1-clinical-trials.pptx")
 
 def session2(figure):

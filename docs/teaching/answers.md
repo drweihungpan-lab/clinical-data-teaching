@@ -6,6 +6,7 @@ Release after discussion if useful. Answers emphasize reasoning, not calculation
 
 1. **Biomarker versus events:** no. A marker response addresses the measured biological effect; additional evidence is needed for a claim about clinical events. Ask students to state the actual study question before generalizing.
 2. **CRO oversight:** no. Transferring an activity does not make sponsor oversight disappear. Exact documented responsibilities depend on the arrangement.
+3. **Mouse paper to first human:** no. A published animal result is a starting point, not permission. Accept any reasonable pair: a science gap (replication, whether the mouse model reflects human disease, formal safety studies, a starting dose, a human endpoint) and a business gap (funding, a company to carry it, market need, a manufactured clinical batch, regulatory and ethics permission, sites).
 
 ## Session 2
 

@@ -5,6 +5,10 @@ Checked for this implementation on **2026-10-11**. Historical study findings are
 | Topic | Primary source | Use |
 | --- | --- | --- |
 | Clinical-trial phases | [FDA definitions](https://www.fda.gov/drugs/investigational-new-drug-application-ind/drug-development-and-review-definitions) | Different questions and typical scale; not fixed sample-size rules |
+| Preclinical replication (opening) | [Begley and Ellis, Nature, 2012](https://www.nature.com/articles/483531a) | One industry team's replication experience; not a universal rate. Checked 2026-11-25 |
+| Preclinical development | [FDA preclinical research](https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research), [ICH M3(R2)](https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf) | What must be ready before first-in-human; two-species toxicity for typical small molecules. Checked 2026-11-25 |
+| US permission to start a trial | [21 CFR 312.40](https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40), [FDA IND overview](https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application) | IND in effect 30 days after receipt unless clinical hold. Checked 2026-11-25 |
+| EU permission to start a trial | [Clinical Trials Regulation (EU) 536/2014](https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng) | Single application through CTIS; member-state assessment. Checked 2026-11-25 |
 | Protocol/design | [FDA clinical research](https://www.fda.gov/patients/drug-development-process/step-3-clinical-research) | Link objectives, population, collection, and analysis |
 | US drug review | [FDA review process](https://www.fda.gov/drugs/information-consumers-and-patients-drugs/fdas-drug-review-process-ensuring-drugs-are-safe-and-effective) | Medicine evidence and approval context |
 | EU medicine authorization | [EMA authorization overview](https://www.ema.europa.eu/en/about-us/what-we-do/authorisation-medicines) | EMA assessment, Commission decision, national trial authorization |

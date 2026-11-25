@@ -44,6 +44,11 @@ By the end of the course, students should be able to:
 
 **Duration:** 2 hours
 
+#### Opening Scenario: A Perfect Discovery
+
+- Start from an invented researcher's published mouse study and ask what is missing before a clinical trial.
+- Sort the gaps into two directions: science (reproducibility, biology, safety, human evidence) and business/operations (funding, market, manufacturing, permission to start).
+
 #### The Clinical Trial Pipeline
 
 - Introduce protocol, endpoints, randomization, blinding, and safety monitoring before discussing phases.
@@ -53,6 +58,8 @@ By the end of the course, students should be able to:
 - Use the published SLN360 study to explain evidence that supports continuing, changing, or stopping development, without detailed dose-cohort analyses.
 
 #### Mapping the Global Industry Ecosystem
+
+Taught as the invented researcher's journey from paper to first patient: university grant and patent, spin-out biotech and venture funding, a light market check, preclinical safety studies and a clinical batch, permission to start (FDA IND; EU clinical-trial application), and a pharma partner for later phases.
 
 - **Pharma:** Understand the operating model, product portfolio, development strategy, and data assets of large pharmaceutical companies.
 - **Biotech:** Explore science-driven development, funding models, partnerships, and the role of focused data assets.
