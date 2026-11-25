@@ -11,7 +11,7 @@
 | 55–65 | Break |
 | 65–85 | Industry journey: from paper to first patient |
 | 85–105 | Public SLN360 case discussion |
-| 105–120 | Recap, three checks, and topic choices |
+| 105–120 | Recap, three checks, and take-home exercise |
 
 **Welcome (0–3).** Share survey themes in one or two sentences and, briefly, your own route from statistics into clinical development and medical devices. Use an experience you can share publicly, not a confidential study detail.
 
@@ -284,11 +284,11 @@ Open the study and guide students through the card. Ask them to locate the prima
 
 Ask students to imagine joining the development meeting. They should articulate the question a next study must answer, rather than simply say “the p-value is small.” Preview the four core data/statistical roles in session 2.
 
-## Recap and student topics
+## Recap and take-home exercise
 
 Three oral checks: (1) Does biomarker improvement alone establish fewer cardiovascular events? (2) If a CRO performs study activities, does the sponsor's oversight disappear? (3) Dr. Lin's mouse paper is in a top journal. Does that mean the first human trial can start? Name one science gap and one business gap. Answers are in [the instructor key](answers.md).
 
-Offer the three [session-1 presentation topics](presentations.md#after-session-1). Choose one speaker per topic before students leave.
+Assign the [take-home exercise](presentations.md#after-session-1-take-home-exercise--why-did-these-trials-stop): every student searches ClinicalTrials.gov for terminated trials in one condition, sorts the "Why Stopped" reasons into science, operations, or unclear, and prepares at most five slides. Tell students you will pick two presenters at the start of session 2, so everyone should come prepared. It extends Slides 8–9 with real registry data.
 
 ## References for this session
 

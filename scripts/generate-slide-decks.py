@@ -508,27 +508,32 @@ def session1():
         "A small phase 1 study cannot characterize rare or delayed harms reliably.",
         "Published results are real; the teaching database is invented.",
         "A development decision uses evidence plus safety, feasibility, funding, and judgment.",
-    ], "Session 1 · recap", 21, T, "Three oral checks: biomarker vs events; CRO vs sponsor oversight; Dr. Lin's paper vs first human trial (name one science gap and one business gap). Then invite students to pick one of the three presentation topics.", "sln")
-    cards_slide(prs, "Three open topics for next session", [
-        ("01 · PHASES", "Why does an early result lead to another question rather than settle development?", "Volunteer"),
-        ("02 · SLN360", "What do the study question and biomarker result show—and leave open?", "Volunteer"),
-        ("03 · SPONSOR + CRO", "How can activities be shared while oversight remains?", "Volunteer"),
-    ], "Session 1 · student topics", 22, T, "Choose one volunteer per topic before leaving. Each presentation is 5–10 minutes at the next session. Suggested primary sources appear in presenter notes.", cols=3)
+    ], "Session 1 · recap", 21, T, "Three oral checks: biomarker vs events; CRO vs sponsor oversight; Dr. Lin's paper vs first human trial (name one science gap and one business gap). Then assign the take-home exercise on the next slide.", "sln")
+    cards_slide(prs, "Take-home: why did these trials stop?", [
+        ("Search", "ClinicalTrials.gov \u00b7 one condition \u00b7 phase 2 or 3 \u00b7 status Terminated. Record the date and filters.", "Step 1"),
+        ("Sort about 20 reasons", "Read each \u201cWhy Stopped\u201d reason: science, operations, or unclear.", "Step 2"),
+        ("Count and compare", "Which group dominates? Compare with the published finding on early stops.", "Step 3"),
+        ("Share in \u2264 5 slides", "Everyone prepares. Two presenters are picked at the start of session 2.", "Step 4"),
+    ], "Session 1 \u00b7 take-home exercise", 22, T,
+       "Every student completes this. Five slides at most: question and search; counts; one trial in detail; limitations of the Why Stopped field; takeaway and which role could have caught the problem. "
+       "Good answers notice vague or blank reasons, that completed trials that missed their endpoint have no Why Stopped reason, and that one program decision can stop many trials. "
+       "Full instructions are in presentations.md. Tell students you will pick two presenters at the start of session 2.",
+       "williams2015", cols=2)
     prs.save(OUT / "session-1-clinical-trials.pptx")
 
 def session2(figure):
     prs = make_prs()
     section_cover(prs, "Roles, clinical data\n& AI", "Who turns observations into evidence—and what can we conclude?",
                   2, "2 HOURS", "Recognize responsibilities, outputs, and handoffs across the data workflow.",
-                  "Start with three student presentations. The real clinical example is SLN360; the dataset is invented.")
+                  "Start with two take-home presentations on why trials stop. The real clinical example is SLN360; the dataset is invented.")
     agenda_slide(prs, "A map for the next two hours", [
-        ("00–30", "Presentations", "Three topics · 5–10 min each"),
-        ("30–50", "Core roles", "Outputs and handoffs"),
-        ("50–70", "Data → TFL", "Conceptual walkthrough"),
+        ("00–25", "Student talks", "Why trials stop · two students + discussion"),
+        ("25–45", "Core roles", "Outputs and handoffs"),
+        ("45–70", "Data → TFL", "Conceptual walkthrough"),
         ("70–80", "Break", "Ten minutes"),
         ("80–110", "RWD + AI", "Feasibility; two evidence cases"),
         ("110–120", "Synthesis", "Checks and topic choices"),
-    ], "Session 2", 2, 15, "Presentations are capped at ten minutes each; feedback is brief and embedded.")
+    ], "Session 2", 2, 15, "Pick two students to present the ClinicalTrials.gov take-home exercise, at most five slides and about eight minutes each, then a short class discussion: did operations reasons outnumber science reasons, what share was unclear, what denominator? The Why Stopped field is real messy, partly missing data, which leads into today's data roles.")
     cards_slide(prs, "Four core roles · one evidence chain", [
         ("Biostatistician", "Shapes design and planned inference.", "Question + analysis"),
         ("Data scientist", "Explores patterns; uses RWD to inform design.", "Exploration + feasibility"),

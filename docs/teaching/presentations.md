@@ -1,22 +1,40 @@
 # Open topics and short presentations
 
-After sessions 1 and 2, choose one student per topic to give a **5–10-minute** presentation at the next session. Three topics means three presentations, not three presentations by every student. They are ungraded, with brief constructive feedback. The final session's topics are optional follow-up reflections; no fourth meeting is assumed.
+After session 1, **every student** completes one take-home exercise, and the instructor picks two students to present it at the start of session 2. After session 2, choose one student per topic to give a **5–10-minute** presentation at session 3; three topics means three presentations, not three presentations by every student. All presentations are ungraded, with brief constructive feedback. The final session's topics are optional follow-up reflections; no fourth meeting is assumed.
 
 ## Preparation and selection
 
-Volunteer for a topic before leaving. The instructor resolves clashes and ensures all three topics have a speaker; other students may read or discuss the topic without producing a presentation. No confidential information, coding, or detailed legal analysis is needed.
+For the session-2 topics, volunteer before leaving. The instructor resolves clashes and ensures all three topics have a speaker; other students may read or discuss the topic without producing a presentation. No confidential information, coding, or detailed legal analysis is needed.
 
 Use at most five slides: question/context; one explanation or example; evidence/source; limitations; takeaway. Cite one or two primary sources. A good presentation states what the evidence shows, what it cannot show, and which professional role contributes. If class sessions leave no research interval, use the supplied source and prepare a short interpretation rather than a fresh literature search.
 
 The instructor gives one strength and one correction or next question. Feedback focuses on clarity, source accuracy, role awareness, and calibrated conclusions rather than visual polish or speed. Keep feedback within the schedule's transitions.
 
-## After session 1
+## After session 1: take-home exercise — why did these trials stop?
 
-| Topic | Question to answer | Suggested starting point |
-| --- | --- | --- |
-| Phases and decisions | Why does an early-study result support another study rather than settle the whole development question? | [FDA phase definitions](https://www.fda.gov/drugs/investigational-new-drug-application-ind/drug-development-and-review-definitions) |
-| SLN360 evidence | What do its trial question and biomarker result tell us, and what do they leave open? | [Public case card](case-study.md) and linked paper |
-| Sponsor and partners | How can a sponsor and CRO divide activities while maintaining oversight? | [Role guide](roles.md) and [ICH overview](https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf) |
+**Everyone does this exercise.** At the start of session 2 the instructor picks **two students** to present, so everyone should arrive ready. Presenters use **no more than five slides** and about eight minutes. Everyone else should be ready to share one finding in the short class discussion that follows. No coding is needed; a spreadsheet or a hand-made table is fine.
+
+**The question.** Session 1 split failure reasons into the drug and the science versus operations. When real trials stop early, which kind of reason do sponsors give, and what can a public registry tell you, or not tell you?
+
+**Steps**
+
+1. Go to [ClinicalTrials.gov](https://clinicaltrials.gov/) and choose one condition (for example Alzheimer's disease, heart failure, or a cancer type you are interested in).
+2. Filter to interventional studies, phase 2 or phase 3, with overall status **Terminated**. Write down the date and the exact filters so someone else could repeat your search.
+3. Look at about 20 trials. In each record, find the **"Why Stopped"** reason. You can also download the results with that column included.
+4. Sort each reason into one of three groups: **science** (lack of efficacy or futility, safety), **operations** (recruitment, funding or business decision, design, sites, supply), or **unclear / not stated**.
+5. Count each group. Compare your result with the published finding that insufficient accrual was the leading non-data reason among terminated trials ([Williams et al., 2015](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127242)).
+
+**Five slides at most**
+
+1. Your question and search: condition, filters, search date, number of trials found and how you chose 20.
+2. Your counts: science, operations, unclear. A simple table is enough.
+3. One trial in detail: its NCT number, what it tested, and why it stopped, in your own words.
+4. Limitations: what the "Why Stopped" field cannot tell you.
+5. Takeaway: what you learned, and which role (statistician, data manager, clinical operations, sponsor) might have prevented or caught the problem.
+
+**What a good answer notices.** Many reasons are vague ("sponsor decision," "business reasons"), point elsewhere ("see detailed description"), or are blank. That is real missing and messy data. The field covers trials that **stopped early**; a trial that ran to the end and missed its primary endpoint shows "Completed" and has no "Why Stopped" reason, so this sample cannot estimate why *drugs* fail. A program-level decision (for example, stopping development after another trial's results) can appear as the reason for many trials at once. Different search filters and dates give different samples.
+
+**Instructor notes.** Choose presenters with different conditions if possible, so the class can compare. Spend the remaining minutes asking: did operations reasons outnumber science reasons? What share was unclear? What denominator did each presenter use? A search on 2026-11-25 for terminated phase 3 Alzheimer's disease trials returned 70 records, with reasons ranging from an unfavorable risk–benefit result, to an investigator leaving the site, to "see termination reason in detailed description," to blank. Counts change as the registry updates.
 
 ## After session 2
 

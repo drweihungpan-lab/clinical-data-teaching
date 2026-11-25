@@ -35,8 +35,8 @@ By the end of the course, students should be able to:
 - The published **SLN360 phase 1 study** is the real drug-development example. Its Lp(a) biomarker findings are discussed at a high level; no confidential information or actual patient-level records are used.
 - A separate invented **EDU-LPA-001** dataset demonstrates the shape and purpose of SDTM-style domains, analysis-ready data, and TFLs. Its design and results are not those of SLN360.
 - A separate fictional **CardioLab Connect** Lp(a) blood-test product and portal anchor session 3. It is not a Silence Therapeutics product or a SLN360 companion diagnostic.
-- Each session includes a ten-minute break. Sessions 2 and 3 start with three student presentations of 5–10 minutes, one per open topic from the preceding session, within the two-hour slot.
-- Three open topics are offered after every session; the final set is optional follow-up reflection with no extra meeting. Surveys bracket the complete course; presentations and knowledge checks are ungraded.
+- Each session includes a ten-minute break. After session 1, every student completes a take-home exercise: find terminated trials on ClinicalTrials.gov and sort the reasons they stopped into science versus operations. The instructor picks two students to present it (at most five slides) at the start of session 2.
+- Session 3 starts with three student presentations of 5–10 minutes, one per open topic offered after session 2. The topics after session 3 are optional follow-up reflection with no extra meeting. Surveys bracket the complete course; presentations and knowledge checks are ungraded.
 
 ## Session Schedule
 

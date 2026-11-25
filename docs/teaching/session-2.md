@@ -4,12 +4,14 @@
 
 | Minutes | Content |
 | --- | --- |
-| 0–30 | Three student presentations |
-| 30–50 | Core roles and shared workflow |
-| 50–70 | Conceptual SDTM/analysis/TFL demonstration |
+| 0–25 | Two take-home presentations and class discussion: why did these trials stop? |
+| 25–45 | Core roles and shared workflow |
+| 45–70 | Conceptual SDTM/analysis/TFL demonstration |
 | 70–80 | Break |
 | 80–110 | RWD feasibility and two AI cases |
 | 110–120 | Recap, checks, and next topic choices |
+
+**Opening presentations (0–25).** Pick two students to present the [session-1 take-home exercise](presentations.md#after-session-1-take-home-exercise--why-did-these-trials-stop), at most five slides and about eight minutes each. Use the remaining time for a short class discussion: did operations reasons outnumber science reasons, what share was unclear, and what denominator did each person use? Bridge to today: the "Why Stopped" field is a real example of messy, partly missing data, which is what the data roles in this session handle.
 
 ## Slide 1 — Four roles, one evidence chain
 

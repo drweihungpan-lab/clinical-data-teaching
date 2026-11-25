@@ -19,16 +19,16 @@ The clinical-data backbone is clinical question → trial design → collected o
 - Send the [pre-class survey](pre-class-survey.md) before session 1. It takes about three minutes; use it to adjust vocabulary and examples, not to grade students.
 - Open the three lessons, [roles](roles.md), [data dictionary](../../data/synthetic/data-dictionary.md), and [TFL collection](../../tfl/README.md). Download CSVs for offline use.
 - Have the published study page ready, including its Table 1, Table 2, and Figure 2. Link to published assets; do not assume you may redistribute journal figures.
-- Ask students to use the [presentation guidance](presentations.md) after sessions 1 and 2. Choose one speaker per topic and record the choices before leaving.
+- After session 1, assign the [ClinicalTrials.gov take-home exercise](presentations.md#after-session-1-take-home-exercise--why-did-these-trials-stop) to every student and pick two presenters at the start of session 2. After session 2, use the [presentation guidance](presentations.md): choose one speaker per topic and record the choices before leaving.
 
 ## Delivery and pacing
 
-Each slot is 120 minutes, including a ten-minute break. The schedules below reserve the maximum 30 minutes for three 5–10-minute presentations in sessions 2 and 3. Shorter presentations release time for explanation, not extra required content.
+Each slot is 120 minutes, including a ten-minute break. Session 2 reserves 25 minutes for two take-home-exercise presentations plus class discussion; session 3 reserves the maximum 30 minutes for three 5–10-minute presentations. Shorter presentations release time for explanation, not extra required content.
 
 | Session | Blocks in minutes | Total |
 | --- | --- | --- |
 | 1 | Welcome 3; opening scenario 10; trial foundations 17; phases, success rates, and development decisions 25; break 10; industry journey 20; SLN360 discussion 20; recap and topic choices 15 | 120 |
-| 2 | Presentations 30; roles and workflow 20; data/TFL demonstration 20; break 10; RWD and AI cases 30; recap and topic choices 10 | 120 |
+| 2 | Two exercise presentations and discussion 25; roles and workflow 20; data/TFL demonstration 25; break 10; RWD and AI cases 30; recap and topic choices 10 | 120 |
 | 3 | Presentations 30; diagnostic-product contrast 20; break 10; four-framework map 25; cross-team scenario 15; synthesis, survey, and optional topics 20 | 120 |
 
 Feedback is brief and embedded in transitions: offer one strength and one evidence/interpretation correction. Do not add a separate 15-minute feedback block. If a presentation runs toward ten minutes, shorten examples, not the break or the final recap.
