@@ -27,7 +27,7 @@ Each slot is 120 minutes, including a ten-minute break. The schedules below rese
 
 | Session | Blocks in minutes | Total |
 | --- | --- | --- |
-| 1 | Welcome 3; opening scenario 10; trial foundations 17; phases and development decisions 20; break 10; industry journey 20; SLN360 discussion 25; recap and topic choices 15 | 120 |
+| 1 | Welcome 3; opening scenario 10; trial foundations 17; phases, success rates, and development decisions 25; break 10; industry journey 20; SLN360 discussion 20; recap and topic choices 15 | 120 |
 | 2 | Presentations 30; roles and workflow 20; data/TFL demonstration 20; break 10; RWD and AI cases 30; recap and topic choices 10 | 120 |
 | 3 | Presentations 30; diagnostic-product contrast 20; break 10; four-framework map 25; cross-team scenario 15; synthesis, survey, and optional topics 20 | 120 |
 

@@ -1,4 +1,4 @@
-# Session 1 — Clinical trials and the industry
+# Session 1 — Data processing in clinical trials
 
 **Duration:** 120 minutes, including a ten-minute break. **Outcome:** explain how a development question becomes a study and recognize the teams needed to deliver it.
 
@@ -7,10 +7,10 @@
 | 0–3 | Welcome and survey themes |
 | 3–13 | Opening scenario: a perfect discovery |
 | 13–30 | Clinical-trial foundations |
-| 30–50 | Phases and development decisions |
-| 50–60 | Break |
-| 60–80 | Industry journey: from paper to first patient |
-| 80–105 | Public SLN360 case discussion |
+| 30–55 | Phases, success rates, why programs fail, and development decisions |
+| 55–65 | Break |
+| 65–85 | Industry journey: from paper to first patient |
+| 85–105 | Public SLN360 case discussion |
 | 105–120 | Recap, three checks, and topic choices |
 
 **Welcome (0–3).** Share survey themes in one or two sentences and, briefly, your own route from statistics into clinical development and medical devices. Use an experience you can share publicly, not a confidential study detail.
@@ -84,18 +84,71 @@ Randomization balances groups in expectation; it does not guarantee exact balanc
 
 **Slide text**
 
-| Phase | Main question | Statistical/data emphasis |
-| --- | --- | --- |
-| I | Can early human exposure be studied safely, and what doses merit further work? | Close safety observation, dose/cohort context, descriptive signals |
-| II | Is there enough evidence of activity and a suitable regimen to continue? | Endpoint/dose choices, uncertainty, feasibility |
-| III | Is the benefit–risk evidence adequate for the proposed use? | Prespecified comparisons, larger evidence base, generalizability |
-| IV | What is learned after authorization in practice? | Longer-term safety/effectiveness and broader use |
+| Phase | Main question | Typical size | Statistical/data emphasis |
+| --- | --- | --- | --- |
+| I | Can early human exposure be studied safely, and what doses merit further work? | 20–100 participants | Close safety observation, dose/cohort context, descriptive signals |
+| II | Is there enough evidence of activity and a suitable regimen to continue? | Up to several hundred | Endpoint/dose choices, uncertainty, feasibility |
+| III | Is the benefit–risk evidence adequate for the proposed use? | 300–3,000 | Prespecified comparisons, larger evidence base, generalizability |
+| IV | What is learned after authorization in practice? | Several thousand | Longer-term safety/effectiveness and broader use |
 
 **Instructor notes**
 
-Sample sizes grow in many programs but are not a rule defining the phases. As broad illustrations, FDA describes tens in early studies, hundreds in phase II, and hundreds to thousands in phase III. Disease, design, and purpose can change these patterns. Phase I is not always conducted in healthy volunteers. Do not transfer this phase structure mechanically to devices. [FDA definitions](https://www.fda.gov/drugs/investigational-new-drug-application-ind/drug-development-and-review-definitions)
+Typical sizes are FDA's broad illustrations ([FDA clinical research](https://www.fda.gov/patients/drug-development-process/step-3-clinical-research)). Sample sizes grow in many programs but are not a rule defining the phases. The actual size comes from the question, endpoint, expected effect, and power calculation: rare-disease trials can be far smaller and cardiovascular outcome trials far larger. Disease, design, and purpose can change these patterns. Phase I is not always conducted in healthy volunteers. Do not transfer this phase structure mechanically to devices. [FDA definitions](https://www.fda.gov/drugs/investigational-new-drug-application-ind/drug-development-and-review-definitions)
 
-## Slide 7 — Development is a sequence of decisions
+## Slide 7 — How often does a candidate make it?
+
+**Slide text**
+
+| Transition (2011–2020) | Success rate |
+| --- | --- |
+| Phase I → Phase II | 52.0% |
+| Phase II → Phase III | 28.9% (the biggest hurdle) |
+| Phase III → submission | 57.8% |
+| Submission → FDA approval | 90.6% |
+
+**Overall, Phase I → approval: 7.9%, about 1 in 13 candidates** (shown as its own row below the four transitions).
+
+- Why do the other 12 stop? Write down two reasons before the next slide.
+
+**Instructor notes**
+
+Rates are from the BIO/Informa/QLS analysis of 12,728 phase transitions in 2011–2020 ([BIO 2021](https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf)). Ask students to multiply the four transition rates: 0.520 × 0.289 × 0.578 × 0.906 ≈ 0.079. Compounding is the point. Then ask the statistics questions: what is the denominator (program–indication transitions, not molecules or trials), and which programs are in the database? Rates vary widely by disease area. In the same analysis, hematology reached 23.9% overall and oncology 5.3%, and programs that preselected patients with a biomarker reached 15.9%. Other analyses using different methods and periods report different overall numbers, so present this as one well-documented estimate rather than a fixed law. FDA's own patient page, for example, gives about 70% moving past phase 1 and about 33% past phase 2. Asking why the sources differ (period, denominator, which programs are counted) is a good statistics question.
+
+Give pairs about two minutes to write two reasons a program might stop. Collect a few and sort them aloud into the two columns from Slide 2, science and business/operations. That sorting sets up the next two slides. Do not reveal the answers yet.
+
+## Slide 8 — Why programs fail: the drug and the science
+
+**Slide text**
+
+| Reason | Share of clinical failures | What it looks like |
+| --- | --- | --- |
+| Lack of efficacy | 40–50% | The target or animal model did not translate to people; no meaningful benefit over control |
+| Unmanageable toxicity | about 30% | Off-target or organ harm; the benefit no longer outweighs the risk |
+| Poor drug-like properties | 10–15% | Too little exposure, fast clearance, does not reach the tissue; wrong dose chosen |
+
+**Instructor notes**
+
+Shares are as summarized for 2010–2017 clinical trials by [Sun et al., 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9293739/). The remaining about 10% they attribute to lack of commercial need and poor strategic planning, which the next slide covers. Compare with the students' list. Lack of efficacy is the left column of Slide 2 coming due: a mouse result that did not hold in humans. This is why phase II, the first real test of efficacy in patients, is the biggest hurdle. Toxicity often appears early, but rare or delayed harms may only surface in large or long trials.
+
+## Slide 9 — Why programs and trials fail: operations
+
+**Slide text**
+
+| Reason | What it looks like |
+| --- | --- |
+| Money and strategy | Funding runs out, a portfolio is reprioritized, a competitor gets there first |
+| Statistical design | Underpowered sample size, an endpoint that does not capture benefit, wrong population, unrealistic assumptions |
+| Recruitment and retention | Too few eligible patients, criteria too strict, participants drop out |
+| Sites and execution | Slow start-up, protocol deviations, missing or poor-quality data |
+| Supply | The clinical batch is delayed or fails quality checks |
+
+**Instructor notes**
+
+These reasons can stop a trial even when the drug might work, so a "failure" is not always evidence against the drug. One analysis of 905 terminated trials on ClinicalTrials.gov found that 68% stopped for reasons other than the trial's accumulated data, and insufficient accrual was the leading reason among those (57%, 350 of 619) ([Williams et al., 2015](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127242)). Point out that the denominator here is terminated trials, not drug programs, so it cannot be added to the shares on Slide 8. That difference is itself a statistics lesson.
+
+Emphasize the statistician's part. Sample size and power, endpoint choice, eligibility criteria, and realistic recruitment assumptions are design decisions made before the first patient enrolls. Session 2 shows how real-world data can test recruitment feasibility.
+
+## Slide 10 — Development is a sequence of decisions
 
 **Slide text**
 
@@ -107,11 +160,11 @@ Sample sizes grow in many programs but are not a rule defining the phases. As br
 
 Distinguish evidence from decision criteria. A small study may justify further investment without establishing approval-level evidence. Scientific, safety, operational, and business considerations can all affect development decisions; do not infer an undisclosed cause from a headline. Ask students to name what a phase I trial cannot answer reliably.
 
-## Industry journey: from paper to first patient (60–80)
+## Industry journey: from paper to first patient (65–85)
 
 Return to Dr. Lin and follow the business-and-operations column of Slide 2. Each step introduces one kind of organization, so the ecosystem is learned as a journey, not a list. Budget about four minutes per slide. The path below is one common route, not the only one: some programs stay in academia longer, some are licensed directly to pharma, and some are funded by foundations or governments.
 
-## Slide 8 — From paper to company
+## Slide 11 — From paper to company
 
 **Slide text**
 
@@ -123,7 +176,7 @@ Return to Dr. Lin and follow the business-and-operations column of Slide 2. Each
 
 Publishing before filing a patent can damage patentability. Europe generally requires absolute novelty; the US offers a limited grace period for an inventor's own disclosure. Mention this as a practical hook, not legal training. Investors ask whether the science is real (the left column) and whether a product could matter commercially. Keep the market discussion to two minutes: who needs this, how many people, and what already exists. Pricing and reimbursement are out of scope today. A biotech often has one focused program and limited cash, so every study is also a funding milestone.
 
-## Slide 9 — Getting ready for the first human
+## Slide 12 — Getting ready for the first human
 
 **Slide text**
 
@@ -137,7 +190,7 @@ Publishing before filing a patent can damage patentability. Europe generally req
 
 This is preclinical development. For a typical small molecule, repeated-dose toxicity studies in two species, one of them a non-rodent, generally support early clinical trials ([ICH M3(R2)](https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf)); biologics follow a different, product-specific approach. Explain CMC as chemistry, manufacturing, and controls in one sentence: evidence that each batch is what it claims to be. The first human dose is chosen from animal safety and exposure data with a margin of caution. A small biotech rarely owns animal facilities or manufacturing plants, which is why CROs and CDMOs exist. [FDA preclinical research](https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research)
 
-## Slide 10 — Permission to start
+## Slide 13 — Permission to start
 
 **Slide text**
 
@@ -149,7 +202,7 @@ This is preclinical development. For a typical small molecule, repeated-dose tox
 
 Regulatory affairs (RA) coordinates these submissions. A pre-IND meeting lets a sponsor ask FDA questions before filing ([21 CFR 312.40](https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40), [FDA IND overview](https://www.fda.gov/drugs/types-applications/investigational-new-drug-ind-application)). In the EU, trial authorization falls under the [Clinical Trials Regulation](https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng) and is a member-state decision, not an EMA approval. Stress the distinction: permission to *start a trial* is not approval to *market a medicine*. Marketing approval comes only after the phases in Slide 6. Do not teach submission procedures.
 
-## Slide 11 — Who carries it further?
+## Slide 14 — Who carries it further?
 
 **Slide text**
 
@@ -162,9 +215,9 @@ Regulatory affairs (RA) coordinates these submissions. A pre-IND meeting lets a 
 
 **Instructor notes**
 
-A pharma partner brings money, development experience, and scale for later phases. Link back to Slide 7: each phase result is also a business decision point. This is an orientation model, not a definition based on company size or tool stack. Biopharmaceutical describes a scientific/product area rather than a mutually exclusive corporate type. A sponsor can transfer activities to service providers while retaining appropriate oversight. [ICH roles and oversight](https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf)
+A pharma partner brings money, development experience, and scale for later phases. Link back to Slide 10: each phase result is also a business decision point. This is an orientation model, not a definition based on company size or tool stack. Biopharmaceutical describes a scientific/product area rather than a mutually exclusive corporate type. A sponsor can transfer activities to service providers while retaining appropriate oversight. [ICH roles and oversight](https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf)
 
-## Slide 12 — Sites turn plans into observations
+## Slide 15 — Sites turn plans into observations
 
 **Slide text**
 
@@ -181,9 +234,9 @@ Keep this high-level. Follow one blood sample: scheduled visit → collection �
 
 GCP connects ethical study conduct, participant protection, reliable results, and clear sponsor/site responsibilities. It matters to how data are collected, checked, and reported, not only to an inspection. [FDA E6(R3) overview](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e6r3-good-clinical-practice-gcp)
 
-FDA evaluates the submitted US drug-development evidence and makes approval decisions. For the EU centralized medicine route, EMA performs scientific assessment and recommends a decision; the European Commission grants authorization. EU clinical-trial authorization is a national-authority responsibility, not an EMA approval. RA helps teams navigate these interfaces. Keep this to one minute; Slide 10 already covered permission to start. [FDA review](https://www.fda.gov/drugs/information-consumers-and-patients-drugs/fdas-drug-review-process-ensuring-drugs-are-safe-and-effective), [EMA authorization overview](https://www.ema.europa.eu/en/about-us/what-we-do/authorisation-medicines)
+FDA evaluates the submitted US drug-development evidence and makes approval decisions. For the EU centralized medicine route, EMA performs scientific assessment and recommends a decision; the European Commission grants authorization. EU clinical-trial authorization is a national-authority responsibility, not an EMA approval. RA helps teams navigate these interfaces. Keep this to one minute; Slide 13 already covered permission to start. [FDA review](https://www.fda.gov/drugs/information-consumers-and-patients-drugs/fdas-drug-review-process-ensuring-drugs-are-safe-and-effective), [EMA authorization overview](https://www.ema.europa.eu/en/about-us/what-we-do/authorisation-medicines)
 
-## Slide 13 — SLN360: read the study, not only the headline
+## Slide 16 — SLN360: read the study, not only the headline
 
 **Slide text**
 
@@ -195,7 +248,7 @@ FDA evaluates the submitted US drug-development evidence and makes approval deci
 
 Open the study and guide students through the card. Ask them to locate the primary outcome, treatment groups, and measurements. Briefly point to Table 1, Table 2, and Figure 2: participants, adverse events, and biomarker trajectories. Make the number of groups visible so nobody carries over the invented two-arm demonstration into the real study. No detailed cohort modeling or journal-figure redistribution is needed.
 
-## Slide 14 — What would the next team need?
+## Slide 17 — What would the next team need?
 
 **Slide text**
 
@@ -215,4 +268,4 @@ Offer the three [session-1 presentation topics](presentations.md#after-session-1
 
 ## References for this session
 
-Use [FDA preclinical research](https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research), [ICH M3(R2)](https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf), [21 CFR 312.40](https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40), the [EU Clinical Trials Regulation](https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng), [FDA phase definitions](https://www.fda.gov/drugs/investigational-new-drug-application-ind/drug-development-and-review-definitions), [FDA clinical-research overview](https://www.fda.gov/patients/drug-development-process/step-3-clinical-research), [ICH E6(R3) overview](https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf), and the [SLN360 case reference](case-study.md). Sources checked for the 2026-10-11 implementation; opening and industry-journey sources checked 2026-11-25. The study findings are historical.
+Use [BIO/Informa/QLS success rates 2011–2020](https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf), [Sun et al., 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9293739/), [Williams et al., 2015](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127242), [FDA preclinical research](https://www.fda.gov/patients/drug-development-process/step-2-preclinical-research), [ICH M3(R2)](https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf), [21 CFR 312.40](https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40), the [EU Clinical Trials Regulation](https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng), [FDA phase definitions](https://www.fda.gov/drugs/investigational-new-drug-application-ind/drug-development-and-review-definitions), [FDA clinical-research overview](https://www.fda.gov/patients/drug-development-process/step-3-clinical-research), [ICH E6(R3) overview](https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf), and the [SLN360 case reference](case-study.md). Sources checked for the 2026-10-11 implementation; opening and industry-journey sources checked 2026-11-25. The study findings are historical.

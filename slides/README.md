@@ -2,7 +2,7 @@
 
 Three editable widescreen PowerPoint decks are available below. Each deck contains slide content plus presenter notes. They were designed for projection and a short knowledge-transfer lecture; the linked Markdown lessons remain the fuller instructor script.
 
-- [Session 1 — Clinical trials and the industry](powerpoint/session-1-clinical-trials.pptx)
+- [Session 1 — Data processing in clinical trials](powerpoint/session-1-clinical-trials.pptx)
 - [Session 2 — Professional roles, clinical data, and AI](powerpoint/session-2-roles-data-ai.pptx)
 - [Session 3 — Diagnostics and the EU data context](powerpoint/session-3-diagnostics-eu-data.pptx)
 

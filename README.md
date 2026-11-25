@@ -4,7 +4,7 @@ A six-hour, knowledge-transfer course: three two-hour sessions, no required prog
 
 | Session | Lesson | Central question |
 | --- | --- | --- |
-| 1 | [Clinical trials and the industry](docs/teaching/session-1.md) | How does a development question become a clinical study? |
+| 1 | [Data processing in clinical trials](docs/teaching/session-1.md) | How does a development question become a clinical study? |
 | 2 | [Professional roles, clinical data, and AI](docs/teaching/session-2.md) | Who turns observations into trustworthy evidence? |
 | 3 | [Diagnostics and the EU data context](docs/teaching/session-3.md) | What changes when the product measures rather than treats? |
 

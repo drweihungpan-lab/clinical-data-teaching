@@ -47,6 +47,10 @@ SOURCES = {
     "ich_m3": "https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf",
     "ind": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.40",
     "eu_ctr": "https://eur-lex.europa.eu/eli/reg/2014/536/oj/eng",
+    "bio_loa": "https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf",
+    "fda_research": "https://www.fda.gov/patients/drug-development-process/step-3-clinical-research",
+    "williams2015": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127242",
+    "sun2022": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9293739/",
     "ich_e6": "https://admin.ich.org/sites/default/files/inline-files/ICH_E6%28R3%29_Step%204_Presentation_2025_0123.pdf",
 }
 SOURCE_LABELS = {
@@ -61,7 +65,7 @@ SOURCE_LABELS = {
     "replication": "Begley & Ellis · Nature 2012",
     "fda_preclinical": "FDA · preclinical research", "ich_m3": "ICH M3(R2)",
     "ind": "21 CFR 312.40", "eu_ctr": "EU Clinical Trials Regulation 536/2014",
-    "ich_e6": "ICH E6(R3)",
+    "ich_e6": "ICH E6(R3)", "bio_loa": "BIO/Informa/QLS 2021", "sun2022": "Sun et al. · Acta Pharm Sin B 2022", "williams2015": "Williams et al. · PLoS One 2015", "fda_research": "FDA · clinical research",
 }
 
 def rgb(hex_value):
@@ -221,10 +225,11 @@ def two_column_slide(prs, title, columns, section, number, total, notes="", sour
     return slide
 
 def flow_slide(prs, title, stages, section, number, total, notes="", source="",
-               tagline="A HANDOFF IS A CONVERSATION ABOUT PURPOSE, QUALITY, AND WHAT THE NEXT TEAM NEEDS."):
+               tagline="A HANDOFF IS A CONVERSATION ABOUT PURPOSE, QUALITY, AND WHAT THE NEXT TEAM NEEDS.",
+               summary=None):
     slide = new_slide(prs, title, section, number, total, source_caption(source))
     count = len(stages)
-    x0, top, gap = 0.65, 2.55, 0.14
+    x0, top, gap = 0.65, (2.05 if summary else 2.55), 0.14
     box_w = (12.0 - gap * (count - 1)) / count
     for i, (label, detail) in enumerate(stages):
         x = x0 + i * (box_w + gap)
@@ -235,7 +240,12 @@ def flow_slide(prs, title, stages, section, number, total, notes="", source="",
         textbox(slide, detail, x + 0.14, top + 1.14, box_w - 0.28, 0.50, 10, MUTED, align=PP_ALIGN.CENTER)
         if i < count - 1:
             textbox(slide, "›", x + box_w - 0.03, top + 0.72, gap + 0.08, 0.35, 20, CORAL, True, align=PP_ALIGN.CENTER)
-    textbox(slide, tagline, 1.0, 5.15, 11.3, 0.55, 17, TEAL, True, align=PP_ALIGN.CENTER)
+    if summary:
+        big, detail = summary
+        shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, x0, 4.15, 12.0, 1.05, NAVY)
+        textbox(slide, big, x0 + 0.40, 4.25, 2.4, 0.85, 34, WHITE, True, valign=MSO_ANCHOR.MIDDLE)
+        textbox(slide, detail, x0 + 2.85, 4.25, 8.9, 0.85, 18, "D8E4EA", True, valign=MSO_ANCHOR.MIDDLE)
+    textbox(slide, tagline, 1.0, 5.65 if summary else 5.15, 11.3, 0.55, 17, TEAL, True, align=PP_ALIGN.CENTER)
     add_notes(slide, notes, [SOURCES[k] for k in source.split(",") if k in SOURCES])
     return slide
 
@@ -313,17 +323,17 @@ def synthetic_figure():
 
 def session1():
     prs = make_prs()
-    T = 18
-    section_cover(prs, "Clinical trials &\nthe industry", "From a mouse-study discovery to evidence and a development decision",
+    T = 21
+    section_cover(prs, "Data processing in\nclinical trials", "From a mouse-study discovery to evidence and a development decision",
                   1, "2 HOURS", "Understand the trial before analyzing its data.",
                   "Opening: an invented discovery. Real anchor: the published SLN360 phase 1 study. Synthetic records are a separate teaching example.")
     agenda_slide(prs, "A map for the next two hours", [
         ("00–13", "Opening", "A perfect discovery · two directions"),
         ("13–30", "Trial basics", "Protocol · endpoint · bias"),
-        ("30–50", "Phases", "Different evidence questions"),
-        ("50–60", "Break", "Ten minutes"),
-        ("60–80", "Industry journey", "Paper → company → first patient"),
-        ("80–105", "SLN360", "Read the actual study design"),
+        ("30–55", "Phases & odds", "Questions · success rates · failure"),
+        ("55–65", "Break", "Ten minutes"),
+        ("65–85", "Industry journey", "Paper → company → first patient"),
+        ("85–105", "SLN360", "Read the actual study design"),
         ("105–120", "Synthesis", "Checks and open topics"),
     ], "Session 1", 2, T, "All blocks, including the break, fit inside 120 minutes. Welcome takes the first three minutes: survey themes and your own route into clinical development.")
     scenario_slide(prs, "A perfect discovery",
@@ -373,25 +383,59 @@ def session1():
         ("Blinding", "Reduces effects of knowing an assignment. It is not always feasible for every person or intervention.", "Bias control"),
         ("Safety review", "Participant welfare can change dose escalation or study continuation.", "Oversight"),
     ], "Trial foundations", 7, T, "These methods support interpretable comparisons; none replaces clinical judgment or careful measurement.")
-    table_slide(prs, "Phases ask different questions", ["Phase", "Main question", "Evidence emphasis"], [
-        ["I", "Can early human exposure be studied safely?", "Close safety, dose and descriptive signals"],
-        ["II", "Is there enough activity to choose what comes next?", "Dose, endpoints, uncertainty, feasibility"],
-        ["III", "Is the benefit–risk case adequate for the proposed use?", "Planned comparisons; broader evidence"],
-        ["IV", "What is learned in wider use?", "Longer-term safety/effectiveness"],
+    table_slide(prs, "Phases ask different questions", ["Phase", "Main question", "Typical size", "Evidence emphasis"], [
+        ["I", "Can early human exposure be studied safely?", "20–100", "Close safety, dose and descriptive signals"],
+        ["II", "Is there enough activity to choose what comes next?", "Up to several hundred", "Dose, endpoints, uncertainty, feasibility"],
+        ["III", "Is the benefit–risk case adequate for the proposed use?", "300–3,000", "Planned comparisons; broader evidence"],
+        ["IV", "What is learned in wider use?", "Several thousand", "Longer-term safety/effectiveness"],
     ], "Drug development", 8, T,
-       "These are common purposes, not rigid recipes. Sample sizes are not definitions. Phase I can include patients; never transfer the drug phase model mechanically to devices.", "fda_phases", widths=[1.0, 4.3, 6.4])
+       "Typical sizes are FDA's broad illustrations (FDA 'Step 3: Clinical Research'). The actual sample size comes from the question, endpoint, expected effect, and power calculation; rare diseases can have far smaller trials and cardiovascular outcome trials far larger ones. These are common purposes, not rigid recipes. Phase I can include patients; never transfer the drug phase model mechanically to devices.", "fda_phases,fda_research", widths=[0.9, 4.0, 2.2, 4.7])
+    flow_slide(prs, "How often does a candidate make it?", [
+        ("52.0%", "Phase I \u2192 Phase II"),
+        ("28.9%", "Phase II \u2192 Phase III \u00b7 biggest hurdle"),
+        ("57.8%", "Phase III \u2192 submission"),
+        ("90.6%", "Submission \u2192 FDA approval"),
+    ], "Drug development", 9, T,
+        "Rates: BIO/Informa/QLS analysis of 12,728 phase transitions, 2011\u20132020. "
+        "Ask students to multiply: 0.520 \u00d7 0.289 \u00d7 0.578 \u00d7 0.906 \u2248 0.079. Compounding is the point. "
+        "Statistics questions: the denominator is program\u2013indication transitions, not molecules or trials; which programs are in the database? "
+        "Rates vary by disease area: hematology 23.9% overall, oncology 5.3%; biomarker-preselected programs 15.9%. Other analyses report different overall numbers. "
+        "Then give pairs two minutes to write two reasons a program might stop. Sort a few aloud into the science and business columns from the opening. Do not reveal the next slides yet.",
+        "bio_loa", tagline="WHY DO THE OTHER 12 STOP? WRITE DOWN TWO REASONS.",
+        summary=("7.9%", "Overall success, Phase I → approval: about 1 in 13 candidates"))
+    cards_slide(prs, "Why programs fail: the drug and the science", [
+        ("Lack of efficacy", "The target or animal model did not translate to people; no meaningful benefit over control.", "40\u201350% of failures"),
+        ("Unmanageable toxicity", "Off-target or organ harm; the benefit no longer outweighs the risk.", "~30% of failures"),
+        ("Poor drug properties", "Too little exposure, fast clearance, does not reach the tissue; wrong dose chosen.", "10\u201315% of failures"),
+    ], "Drug development \u00b7 why programs fail", 10, T,
+        "Shares as summarized for 2010\u20132017 clinical trials by Sun et al. 2022; the remaining ~10% is commercial or strategic, covered on the next slide. "
+        "Compare with the students' list. Lack of efficacy is the science column coming due: a mouse result that did not hold in humans. "
+        "That is why phase II, the first real test of efficacy in patients, is the biggest hurdle. Toxicity often appears early, but rare or delayed harms may only surface in large or long trials.",
+        "sun2022", cols=3)
+    cards_slide(prs, "Why programs and trials fail: operations", [
+        ("Money & strategy", "Funding runs out, the portfolio is reprioritized, a competitor gets there first.", "Business"),
+        ("Statistical design", "Underpowered, an endpoint that misses the benefit, wrong population, unrealistic assumptions.", "Design"),
+        ("Recruitment", "Too few eligible patients, criteria too strict, participants drop out.", "Leading cause of early stops"),
+        ("Sites & execution", "Slow start-up, protocol deviations, missing or poor-quality data.", "Conduct"),
+        ("Supply", "The clinical batch is delayed or fails quality checks.", "Manufacturing"),
+    ], "Drug development \u00b7 why programs fail", 11, T,
+        "These can stop a trial even when the drug might work, so a failure is not always evidence against the drug. "
+        "Williams et al. 2015: of 905 terminated trials on ClinicalTrials.gov, 68% stopped for reasons other than accumulated trial data, and insufficient accrual led those (57%, 350 of 619). "
+        "The denominator is terminated trials, not drug programs, so it cannot be added to the previous slide's shares; that difference is itself a statistics lesson. "
+        "Stress the statistician's part: power, endpoint, eligibility, and realistic recruitment assumptions are decided before the first patient enrolls. Session 2 shows how real-world data can test recruitment feasibility.",
+        "williams2015", cols=3)
     cards_slide(prs, "Development is a sequence of decisions", [
         ("CONTINUE", "Evidence supports asking the next question.", "Next study"),
         ("CHANGE", "Revise dose, population, measure, or plan.", "Adapt the program"),
         ("STOP", "Evidence, safety, or feasibility no longer supports continuation.", "End the program"),
-    ], "Drug development", 9, T, "A decision is not itself an effect estimate. A small early study may justify more research without establishing clinical benefit.", cols=3)
+    ], "Drug development", 12, T, "A decision is not itself an effect estimate. A small early study may justify more research without establishing clinical benefit.", cols=3)
     flow_slide(prs, "From paper to company", [
         ("University lab", "Grants fund the discovery"),
         ("Patent", "Tech-transfer office files"),
         ("Spin-out biotech", "Licenses the patent"),
         ("Investors", "Venture funding rounds"),
         ("Market check", "Need · patients · competitors"),
-    ], "Industry journey · Dr. Lin", 10, T,
+    ], "Industry journey · Dr. Lin", 13, T,
        "Publishing before filing a patent can damage patentability: Europe generally requires absolute novelty, while the US offers a limited grace period for an inventor's own disclosure. A practical hook, not legal training. "
        "Investors ask two things: is the science real (the left column) and could a product matter commercially. Keep the market check to two minutes: who needs it, how many people, what already exists. No pricing or reimbursement today. "
        "A biotech often has one focused program and limited cash, so every study is also a funding milestone. This is one common route; programs can also stay academic longer, license directly to pharma, or be funded by foundations or governments.",
@@ -402,7 +446,7 @@ def session1():
         ("GLP safety studies", "Toxicology, typically in two species for a small molecule; often run by a CRO.", "CRO"),
         ("Clinical batch", "Quality-controlled supply and CMC evidence; often made by a CDMO.", "CDMO"),
         ("Documents", "Investigator's brochure, first protocol, consent, starting-dose rationale.", "Paperwork"),
-    ], "Industry journey · Dr. Lin", 11, T,
+    ], "Industry journey · Dr. Lin", 14, T,
        "This is preclinical development. For a typical small molecule, repeated-dose toxicity studies in two species, one a non-rodent, generally support early trials (ICH M3(R2)); biologics follow a product-specific approach. "
        "CMC means chemistry, manufacturing, and controls: evidence that each batch is what it claims to be. The first human dose is chosen from animal safety and exposure data with a margin of caution. "
        "A small biotech rarely owns animal facilities or manufacturing plants, which is why CROs and CDMOs exist.",
@@ -411,7 +455,7 @@ def session1():
         ("United States", "IND to FDA. The trial may begin 30 days after FDA receives it, unless FDA places a clinical hold.", "FDA"),
         ("European Union", "One clinical-trial application through CTIS; the member states concerned, including ethics review, assess it.", "EU CTR"),
         ("Before dosing", "Ethics/IRB approval, selected sites, contracts, and trial registration.", "Sites"),
-    ], "Industry journey · Dr. Lin", 12, T,
+    ], "Industry journey · Dr. Lin", 15, T,
        "Regulatory affairs coordinates these submissions; a pre-IND meeting lets a sponsor ask FDA questions before filing. EU trial authorization is a member-state decision, not an EMA approval. "
        "Stress the distinction: permission to start a trial is not approval to market a medicine. Marketing approval comes only after the phases. Do not teach submission procedures.",
        "ind,eu_ctr", cols=3)
@@ -420,7 +464,7 @@ def session1():
         ["CRO", "Ran safety studies; later runs trials", "Operations, data management, programming"],
         ["CMO / CDMO", "Made the clinical batch", "Batch quality, consistency, CMC evidence"],
         ["Pharma", "Partners, licenses, or acquires, often after early human data", "Larger trials, portfolio, post-market data"],
-    ], "Industry journey · Dr. Lin", 13, T,
+    ], "Industry journey · Dr. Lin", 16, T,
        "A pharma partner brings money, development experience, and scale for later phases. Link back to the decisions slide: each phase result is also a business decision point. "
        "Company types overlap; this is an orientation model, not a rule based on size or software. Delegation does not erase sponsor oversight.",
        "ich_e6", widths=[2.2, 5.0, 4.6])
@@ -428,18 +472,18 @@ def session1():
         ("Protocol", "Visit and procedure"), ("Site", "Collect specimen"),
         ("Laboratory", "Measure and report"), ("Data team", "Review and resolve"),
         ("Analysis", "Use for a planned question"),
-    ], "Industry journey · first patient", 14, T, "Once the trial starts, sites turn plans into observations. A missing result could mean a missed visit, lost specimen, processing problem, or transfer issue. The source and reason matter; the statistician should not invent a value.", "fda_gcp")
+    ], "Industry journey · first patient", 17, T, "Once the trial starts, sites turn plans into observations. A missing result could mean a missed visit, lost specimen, processing problem, or transfer issue. The source and reason matter; the statistician should not invent a value.", "fda_gcp")
     cards_slide(prs, "SLN360: read the study, not just the headline", [
         ("32", "Participants with elevated Lp(a), no known clinical cardiovascular disease.", "Population"),
         ("5 groups", "Placebo plus four single ascending active-dose cohorts.", "Actual design"),
         ("Primary", "Safety and tolerability; Lp(a) change was a secondary outcome.", "Question"),
         ("150 days", "Maximum follow-up for the biomarker measurement.", "Window"),
-    ], "Published case · SLN360", 15, T,
+    ], "Published case · SLN360", 18, T,
        "This is the 2022 published phase 1 APOLLO study. Do not describe it as a generic two-arm confirmatory trial. Open the paper's participant table, adverse-event table, and Lp(a) figure. Never imply the invented EDU-LPA data are actual trial records.", "sln", cols=2)
     slide = table_slide(prs, "What changed in the published Lp(a) result?", ["Group", "Max median change from baseline"], [
         ["Placebo", "−10%"], ["SLN360 30 mg", "−46%"], ["SLN360 100 mg", "−86%"],
         ["SLN360 300 mg", "−96%"], ["SLN360 600 mg", "−98%"],
-    ], "Published case · SLN360", 16, T,
+    ], "Published case · SLN360", 19, T,
        "Reported maximum median percentage change over follow-up in a 32-person phase 1 study. This dose-related biomarker result supports further study; it does not establish fewer cardiovascular events, approval, comprehensive safety, or clinical benefit. These are not treatment-effect estimates with uncertainty intervals.", "sln", widths=[4.3, 7.5])
     bullets_slide(prs, "Read the evidence at the right level", [
         "A published mouse study is a starting point, not permission to treat people.",
@@ -447,12 +491,12 @@ def session1():
         "A small phase 1 study cannot characterize rare or delayed harms reliably.",
         "Published results are real; the teaching database is invented.",
         "A development decision uses evidence plus safety, feasibility, funding, and judgment.",
-    ], "Session 1 · recap", 17, T, "Three oral checks: biomarker vs events; CRO vs sponsor oversight; Dr. Lin's paper vs first human trial (name one science gap and one business gap). Then invite students to pick one of the three presentation topics.", "sln")
+    ], "Session 1 · recap", 20, T, "Three oral checks: biomarker vs events; CRO vs sponsor oversight; Dr. Lin's paper vs first human trial (name one science gap and one business gap). Then invite students to pick one of the three presentation topics.", "sln")
     cards_slide(prs, "Three open topics for next session", [
         ("01 · PHASES", "Why does an early result lead to another question rather than settle development?", "Volunteer"),
         ("02 · SLN360", "What do the study question and biomarker result show—and leave open?", "Volunteer"),
         ("03 · SPONSOR + CRO", "How can activities be shared while oversight remains?", "Volunteer"),
-    ], "Session 1 · student topics", 18, T, "Choose one volunteer per topic before leaving. Each presentation is 5–10 minutes at the next session. Suggested primary sources appear in presenter notes.", cols=3)
+    ], "Session 1 · student topics", 21, T, "Choose one volunteer per topic before leaving. Each presentation is 5–10 minutes at the next session. Suggested primary sources appear in presenter notes.", cols=3)
     prs.save(OUT / "session-1-clinical-trials.pptx")
 
 def session2(figure):
